@@ -19,6 +19,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v1
 
+      - uses: mstachniuk/ci-skip@v1
+        with:
+          fail-fast: true
+
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
