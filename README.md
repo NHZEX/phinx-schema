@@ -1,4 +1,4 @@
-# Think-Schema
+# PhinxSchema
 
 [![Latest Stable Version](https://poser.pugx.org/zxin/phinx-schema/v/stable)](https://packagist.org/packages/nhzex/phinx-schema)
 [![License](https://poser.pugx.org/zxin/phinx-schema/license)](https://packagist.org/packages/nhzex/phinx-schema)
