@@ -1,0 +1,41 @@
+{
+    "name": "zxin/phinx-ext",
+    "type": "library",
+    "description": "phinx extend",
+    "keywords": [],
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "auooru",
+            "email": "auooru@outlook.com"
+        }
+    ],
+    "require": {
+        "php": "^7.2|^8.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8|^9",
+        "robmorgan/phinx": "~0.12.0",
+        "symfony/var-dumper": "^5.0|^4.0"
+    },
+    "suggest": {
+        "robmorgan/phinx": "must require or phar"
+    },
+    "autoload": {
+        "psr-4": {
+            "Zxin\\PhinxExt\\": "src"
+        },
+        "files": [
+            "src/func.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Zxin\\PhinxExt\\": "tests"
+        }
+    },
+    "extra": {},
+    "config": {
+        "sort-packages": true
+    }
+}
