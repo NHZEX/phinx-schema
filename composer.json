@@ -1,7 +1,7 @@
 {
-    "name": "zxin/phinx-ext",
+    "name": "zxin/phinx-schema",
     "type": "library",
-    "description": "phinx extend",
+    "description": "phinx schema extend",
     "keywords": [],
     "license": "Apache-2.0",
     "authors": [
@@ -23,7 +23,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Zxin\\PhinxExt\\": "src"
+            "Zxin\\Phinx\\Schema\\": "src"
         },
         "files": [
             "src/func.php"
@@ -31,7 +31,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Zxin\\PhinxExt\\": "tests"
+            "Zxin\\Tests\\": "tests"
         }
     },
     "extra": {},

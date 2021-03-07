@@ -1,11 +1,13 @@
 <?php
 declare(strict_types=1);
 
-namespace Zxin\PhinxExt\Schema;
+namespace Zxin\Phinx\Schema;
 
-use Zxin\PhinxExt\Schema;
 use Phinx\Db\Table;
 use RuntimeException;
+use Zxin\Phinx\Schema\Definition\ColumnDefinition;
+use Zxin\Phinx\Schema\Definition\IndexDefinition;
+use Zxin\Phinx\Schema\Definition\TableDefinition;
 
 /**
  * Class Schema

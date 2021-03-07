@@ -6,7 +6,7 @@
  * Time: 9:28
  */
 
-namespace Zxin\PhinxExt\Schema;
+namespace Zxin\Phinx\Schema\Definition;
 
 class TableDefinition
 {

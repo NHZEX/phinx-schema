@@ -6,17 +6,17 @@
  * Time: 17:46
  */
 
-namespace Zxin\PhinxExt\Schema;
+namespace Zxin\Phinx\Schema\Definition;
 
-use Zxin\PhinxExt\Schema;
 use Phinx\Db\Adapter\AdapterInterface as Adapter;
 use Phinx\Db\Adapter\AdapterWrapper;
 use Phinx\Db\Table\Column;
 use Phinx\Util\Literal;
+use Zxin\Phinx\Schema\Schema;
 use function array_pad;
 use function is_array;
 use function method_exists;
-use function Zxin\PhinxExt\to_snake_case;
+use function Zxin\Phinx\Schema\to_snake_case;
 
 /**
  * 字段构造增强
@@ -218,7 +218,7 @@ class ColumnDefinition
      * @param bool   $stored
      * @return ColumnDefinition
      */
-    public function generated(string $expression, bool $stored = false)
+    public function generated(string $expression, bool $stored = false): ColumnDefinition
     {
         $this->generatedExpression = [
             $expression,
@@ -237,7 +237,7 @@ class ColumnDefinition
      * @param string $columnName
      * @return $this
      */
-    public function after(string $columnName)
+    public function after(string $columnName): ColumnDefinition
     {
         $this->column->setAfter($columnName);
         return $this;
@@ -248,7 +248,7 @@ class ColumnDefinition
      * @param bool $enable
      * @return $this
      */
-    public function autoIncrement(bool $enable = true)
+    public function autoIncrement(bool $enable = true): ColumnDefinition
     {
         $this->column->setIdentity($enable);
         return $this;
@@ -259,7 +259,7 @@ class ColumnDefinition
      * @param string $collation eg: utf8mb4
      * @return $this
      */
-    public function charset(string $collation)
+    public function charset(string $collation): ColumnDefinition
     {
         $this->column->setCollation($collation);
         return $this;
@@ -270,13 +270,13 @@ class ColumnDefinition
      * @param string $encoding  eg: utf8mb4_general_ci
      * @return $this
      */
-    public function collation(string $encoding)
+    public function collation(string $encoding): ColumnDefinition
     {
         $this->column->setCollation($encoding);
         return $this;
     }
 
-    public function ccAscii()
+    public function ccAscii(): ColumnDefinition
     {
         $this->column->setCollation('ascii');
         $this->column->setCollation('ascii_general_ci');
@@ -288,7 +288,7 @@ class ColumnDefinition
      * @param string $comment
      * @return $this
      */
-    public function comment(string $comment)
+    public function comment(string $comment): ColumnDefinition
     {
         $this->column->setComment($comment);
         return $this;
@@ -299,7 +299,7 @@ class ColumnDefinition
      * @param string|int|Literal|null $default
      * @return $this
      */
-    public function default($default)
+    public function default($default): ColumnDefinition
     {
         $this->column->setDefault($default);
         return $this;
@@ -310,7 +310,7 @@ class ColumnDefinition
      * @param bool $enable
      * @return $this
      */
-    public function nullable(bool $enable = false)
+    public function nullable(bool $enable = false): ColumnDefinition
     {
         $this->column->setNull($enable);
         return $this;
@@ -321,19 +321,19 @@ class ColumnDefinition
      * @param bool $enable
      * @return $this
      */
-    public function unsigned(bool $enable = true)
+    public function unsigned(bool $enable = true): ColumnDefinition
     {
         $this->column->setSigned(!$enable);
         return $this;
     }
 
-    public function limit(int $limit)
+    public function limit(int $limit): ColumnDefinition
     {
         $this->column->setLimit($limit);
         return $this;
     }
 
-    public function identity(bool $enable)
+    public function identity(bool $enable): ColumnDefinition
     {
         $this->column->setIdentity($enable);
         return $this;
@@ -342,7 +342,7 @@ class ColumnDefinition
     /**
      * @return $this
      */
-    public function change()
+    public function change(): ColumnDefinition
     {
         $this->change = true;
         return $this;
@@ -360,7 +360,7 @@ class ColumnDefinition
      * 获取列
      * @return Column
      */
-    public function getColumn()
+    public function getColumn(): Column
     {
         $this->buildGenerated();
         return $this->column;

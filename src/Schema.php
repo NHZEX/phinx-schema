@@ -1,11 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Zxin\PhinxExt;
+namespace Zxin\Phinx\Schema;
 
 use Closure;
-use Zxin\PhinxExt\Schema\Blueprint;
-use Zxin\PhinxExt\Schema\TableDefinition;
+use Zxin\Phinx\Schema\Definition\TableDefinition;
 use Phinx\Db\Table;
 use Phinx\Migration\AbstractMigration;
 use RuntimeException;

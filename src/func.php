@@ -1,6 +1,6 @@
 <?php
 
-namespace Zxin\PhinxExt;
+namespace Zxin\Phinx\Schema;
 
 use function preg_replace;
 use function strtolower;

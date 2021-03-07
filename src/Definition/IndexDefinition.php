@@ -6,7 +6,7 @@
  * Time: 10:07
  */
 
-namespace Zxin\PhinxExt\Schema;
+namespace Zxin\Phinx\Schema\Definition;
 
 use ValueError;
 use function strtoupper;
