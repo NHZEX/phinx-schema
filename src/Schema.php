@@ -11,10 +11,10 @@ use RuntimeException;
 
 /**
  * Class Schema
- * @package HZEX\Phinx
- * @method void create(string $tableName, Closure $closure, AbstractMigration $migration = null) static
- * @method void update(string $tableName, Closure $closure, AbstractMigration $migration = null) static
- * @method void save(string $tableName, Closure $closure, AbstractMigration $migration = null) static
+ * @package Zxin\Phinx\Schema
+ * @method static void create(string $tableName, Closure $closure, AbstractMigration $migration = null)
+ * @method static void update(string $tableName, Closure $closure, AbstractMigration $migration = null)
+ * @method static void save(string $tableName, Closure $closure, AbstractMigration $migration = null)
  */
 class Schema
 {

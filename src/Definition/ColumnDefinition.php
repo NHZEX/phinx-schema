@@ -20,36 +20,39 @@ use function Zxin\Phinx\Schema\to_snake_case;
 
 /**
  * 字段构造增强
- * Class Blueprint
- * @method ColumnDefinition column(string $type, string $name) static
+ * Class ColumnDefinition
+ * @method static ColumnDefinition column(string $type, string $name)
  *
- * @method ColumnDefinition unsignedBigInteger(string $name) static 相当于 Unsigned BIGINT
- * @method ColumnDefinition bigInteger(string $name) static 相当于 BIGINT
- * @method ColumnDefinition integer(string $name) static 相当于 INTEGER
- * @method ColumnDefinition unsignedInteger(string $name) static 相当于 Unsigned INTEGER
- * @method ColumnDefinition tinyInteger(string $name) static 相当于 TINYINT
- * @method ColumnDefinition unsignedTinyInteger(string $name) static 相当于 Unsigned TINYINT
- * @method ColumnDefinition string(string $name, int $limit) static 相当于带长度的 VARCHAR
- * @method ColumnDefinition char(string $name, int $limit) static 相当于带有长度的 CHAR
- * @method ColumnDefinition json(string $name) static 相当于 JSON
- * @method ColumnDefinition text(string $name) static 相当于 TEXT
- * @method ColumnDefinition blob(string $name) static 相当于 BLOB
- * @method ColumnDefinition smallInteger(string $name) static 相当于 SMALLINT
- * @method ColumnDefinition unsignedSmallInteger(string $name) static 相当于 Unsigned SMALLINT
- * @method ColumnDefinition float(string $name, int $precision = null, int $scale = null) static
- * @method ColumnDefinition double(string $name, int $precision = null, int $scale = null) static
- * @method ColumnDefinition decimal(string $name, int $precision = null, int $scale = null) static
+ * @method static ColumnDefinition tinyInteger(string $name) 相当于 TINYINT
+ * @method static ColumnDefinition unsignedTinyInteger(string $name) 相当于 Unsigned TINYINT
+ * @method static ColumnDefinition smallInteger(string $name) 相当于 SMALLINT
+ * @method static ColumnDefinition unsignedSmallInteger(string $name) 相当于 Unsigned SMALLINT
+ * @method static ColumnDefinition integer(string $name) 相当于 INTEGER
+ * @method static ColumnDefinition bigInteger(string $name) 相当于 BIGINT
+ * @method static ColumnDefinition unsignedInteger(string $name) 相当于 Unsigned INTEGER
+ * @method static ColumnDefinition unsignedBigInteger(string $name) 相当于 Unsigned BIGINT
+ * @method static ColumnDefinition string(string $name, int $limit) 相当于带长度的 VARCHAR
+ * @method static ColumnDefinition char(string $name, int $limit) 相当于带有长度的 CHAR
+ * @method static ColumnDefinition text(string $name) 相当于 TEXT
+ * @method static ColumnDefinition bit(string $name, int $limit)
+ * @method static ColumnDefinition binary(string $name, int $limit)
+ * @method static ColumnDefinition varbinary(string $name, int $limit)
+ * @method static ColumnDefinition blob(string $name) 相当于 BLOB
+ * @method static ColumnDefinition json(string $name) 相当于 JSON
+ * @method static ColumnDefinition float(string $name, int $precision = null, int $scale = null)
+ * @method static ColumnDefinition double(string $name, int $precision = null, int $scale = null)
+ * @method static ColumnDefinition decimal(string $name, int $precision = null, int $scale = null)
  *
- * @method ColumnDefinition lockVersion() static lockVersion
- * @method ColumnDefinition createTime() static createTime
- * @method ColumnDefinition updateTime() static updateTime
- * @method ColumnDefinition deleteTime() static deleteTime
- * @method ColumnDefinition createBy() static createBy
- * @method ColumnDefinition updateBy() static updateBy
- * @method ColumnDefinition uuid() static uuid
- * @method ColumnDefinition status() static status
- * @method ColumnDefinition genre() static genre
- * @method ColumnDefinition remark() static remark
+ * @method static ColumnDefinition lockVersion() lockVersion
+ * @method static ColumnDefinition createTime() createTime
+ * @method static ColumnDefinition updateTime() updateTime
+ * @method static ColumnDefinition deleteTime() deleteTime
+ * @method static ColumnDefinition createBy() createBy
+ * @method static ColumnDefinition updateBy() updateBy
+ * @method static ColumnDefinition uuid() uuid
+ * @method static ColumnDefinition status() status
+ * @method static ColumnDefinition genre() genre
+ * @method static ColumnDefinition remark() remark
  */
 class ColumnDefinition
 {
@@ -80,7 +83,12 @@ class ColumnDefinition
         'string' => [Adapter::PHINX_TYPE_STRING, 255], // TEXT_TINY
         'char'   => [Adapter::PHINX_TYPE_CHAR, null],
         'text'   => [Adapter::PHINX_TYPE_TEXT, null],
-        'blob'   => [Adapter::PHINX_TYPE_BLOB, null],
+
+        'bit'       => [Adapter::PHINX_TYPE_BIT, null],
+        'binary'    => [Adapter::PHINX_TYPE_BINARY, null],
+        'varbinary' => [Adapter::PHINX_TYPE_VARBINARY, null],
+        'blob'      => [Adapter::PHINX_TYPE_BLOB, null],
+
         'json'   => [Adapter::PHINX_TYPE_JSON, null],
 
         'float'   => [Adapter::PHINX_TYPE_FLOAT, null],
@@ -168,6 +176,9 @@ class ColumnDefinition
                 $column->setDefault('');
                 break;
             case 'char':
+            case 'bit':
+            case 'binary':
+            case 'varbinary':
                 $column->setLimit($arg1);
                 break;
             case 'float':

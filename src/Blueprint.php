@@ -10,8 +10,8 @@ use Zxin\Phinx\Schema\Definition\IndexDefinition;
 use Zxin\Phinx\Schema\Definition\TableDefinition;
 
 /**
- * Class Schema
- * @package HZEX\Phinx
+ * Class Blueprint
+ * @package Zxin\Phinx\Schema
  *
  * @property-write string|bool  $id         自定义主键名称 / false=关闭主键 / true=生成主键
  * @property-write string|array $primaryKey 自定义主键字段
@@ -21,27 +21,32 @@ use Zxin\Phinx\Schema\Definition\TableDefinition;
  *
  * @method ColumnDefinition column(string $type, string $name)
  *
- * @method ColumnDefinition integer(string $name) 相当于 INTEGER
- * @method ColumnDefinition unsignedInteger(string $name) 相当于 Unsigned INTEGER
- * @method ColumnDefinition smallInteger(string $name) 相当于 SMALLINT
- * @method ColumnDefinition unsignedSmallInteger(string $name) 相当于 Unsigned SMALLINT
  * @method ColumnDefinition tinyInteger(string $name) 相当于 TINYINT
  * @method ColumnDefinition unsignedTinyInteger(string $name) 相当于 Unsigned TINYINT
+ * @method ColumnDefinition smallInteger(string $name) 相当于 SMALLINT
+ * @method ColumnDefinition unsignedSmallInteger(string $name) 相当于 Unsigned SMALLINT
+ * @method ColumnDefinition integer(string $name) 相当于 INTEGER
+ * @method ColumnDefinition bigInteger(string $name) 相当于 BIGINT
+ * @method ColumnDefinition unsignedInteger(string $name) 相当于 Unsigned INTEGER
+ * @method ColumnDefinition unsignedBigInteger(string $name) 相当于 Unsigned BIGINT
  * @method ColumnDefinition string(string $name, int $limit) 相当于带长度的 VARCHAR
  * @method ColumnDefinition char(string $name, int $limit) 相当于带有长度的 CHAR
  * @method ColumnDefinition text(string $name) 相当于 TEXT
+ * @method ColumnDefinition bit(string $name, int $limit)
+ * @method ColumnDefinition binary(string $name, int $limit)
+ * @method ColumnDefinition varbinary(string $name, int $limit)
  * @method ColumnDefinition blob(string $name) 相当于 BLOB
  * @method ColumnDefinition json(string $name) 相当于 JSON
- * @method ColumnDefinition float(string $name, int $precision = null, int $scale = null) static
- * @method ColumnDefinition double(string $name, int $precision = null, int $scale = null) static
- * @method ColumnDefinition decimal(string $name, int $precision = null, int $scale = null) static
+ * @method ColumnDefinition float(string $name, int $precision = null, int $scale = null)
+ * @method ColumnDefinition double(string $name, int $precision = null, int $scale = null)
+ * @method ColumnDefinition decimal(string $name, int $precision = null, int $scale = null)
  *
- * @method ColumnDefinition lockVersion() lock_version
- * @method ColumnDefinition createTime() create_time
- * @method ColumnDefinition updateTime() update_time
- * @method ColumnDefinition deleteTime() delete_time
- * @method ColumnDefinition createBy() create_by
- * @method ColumnDefinition updateBy() update_by
+ * @method ColumnDefinition lockVersion() lockVersion
+ * @method ColumnDefinition createTime() createTime
+ * @method ColumnDefinition updateTime() updateTime
+ * @method ColumnDefinition deleteTime() deleteTime
+ * @method ColumnDefinition createBy() createBy
+ * @method ColumnDefinition updateBy() updateBy
  * @method ColumnDefinition uuid() uuid
  * @method ColumnDefinition status() status
  * @method ColumnDefinition genre() genre
