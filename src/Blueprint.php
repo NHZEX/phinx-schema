@@ -21,22 +21,24 @@ use Zxin\Phinx\Schema\Definition\TableDefinition;
  *
  * @method ColumnDefinition column(string $type, string $name)
  *
- * @method ColumnDefinition tinyInteger(string $name) 相当于 TINYINT
- * @method ColumnDefinition unsignedTinyInteger(string $name) 相当于 Unsigned TINYINT
- * @method ColumnDefinition smallInteger(string $name) 相当于 SMALLINT
- * @method ColumnDefinition unsignedSmallInteger(string $name) 相当于 Unsigned SMALLINT
- * @method ColumnDefinition integer(string $name) 相当于 INTEGER
- * @method ColumnDefinition bigInteger(string $name) 相当于 BIGINT
- * @method ColumnDefinition unsignedInteger(string $name) 相当于 Unsigned INTEGER
- * @method ColumnDefinition unsignedBigInteger(string $name) 相当于 Unsigned BIGINT
- * @method ColumnDefinition string(string $name, int $limit) 相当于带长度的 VARCHAR
- * @method ColumnDefinition char(string $name, int $limit) 相当于带有长度的 CHAR
- * @method ColumnDefinition text(string $name) 相当于 TEXT
- * @method ColumnDefinition bit(string $name, int $limit)
- * @method ColumnDefinition binary(string $name, int $limit)
- * @method ColumnDefinition varbinary(string $name, int $limit)
- * @method ColumnDefinition blob(string $name) 相当于 BLOB
- * @method ColumnDefinition json(string $name) 相当于 JSON
+ * @method static ColumnDefinition tinyInteger(string $name) 相当于 tinyint
+ * @method static ColumnDefinition unsignedTinyInteger(string $name) 相当于 unsigned tinyint
+ * @method static ColumnDefinition smallInteger(string $name) 相当于 smallint
+ * @method static ColumnDefinition unsignedSmallInteger(string $name) 相当于 unsigned smallint
+ * @method static ColumnDefinition mediumInteger(string $name) 相当于 mediumint
+ * @method static ColumnDefinition unsignedMediumInteger(string $name) 相当于 unsigned mediumint
+ * @method static ColumnDefinition integer(string $name) 相当于 integer
+ * @method static ColumnDefinition unsignedInteger(string $name) 相当于 unsigned integer
+ * @method static ColumnDefinition bigInteger(string $name) 相当于 bigint
+ * @method static ColumnDefinition unsignedBigInteger(string $name) 相当于 unsigned bigint
+ * @method static ColumnDefinition string(string $name, int $limit) 相当于带长度的 varchar
+ * @method static ColumnDefinition char(string $name, int $limit) 相当于带有长度的 char
+ * @method static ColumnDefinition text(string $name) 相当于 text
+ * @method static ColumnDefinition bit(string $name, int $limit)
+ * @method static ColumnDefinition binary(string $name, int $limit)
+ * @method static ColumnDefinition varbinary(string $name, int $limit)
+ * @method static ColumnDefinition blob(string $name) 相当于 blob
+ * @method static ColumnDefinition json(string $name) 相当于 json
  * @method ColumnDefinition float(string $name, int $precision = null, int $scale = null)
  * @method ColumnDefinition double(string $name, int $precision = null, int $scale = null)
  * @method ColumnDefinition decimal(string $name, int $precision = null, int $scale = null)

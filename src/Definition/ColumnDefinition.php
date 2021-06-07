@@ -23,22 +23,24 @@ use function Zxin\Phinx\Schema\to_snake_case;
  * Class ColumnDefinition
  * @method static ColumnDefinition column(string $type, string $name)
  *
- * @method static ColumnDefinition tinyInteger(string $name) 相当于 TINYINT
- * @method static ColumnDefinition unsignedTinyInteger(string $name) 相当于 Unsigned TINYINT
- * @method static ColumnDefinition smallInteger(string $name) 相当于 SMALLINT
- * @method static ColumnDefinition unsignedSmallInteger(string $name) 相当于 Unsigned SMALLINT
- * @method static ColumnDefinition integer(string $name) 相当于 INTEGER
- * @method static ColumnDefinition bigInteger(string $name) 相当于 BIGINT
- * @method static ColumnDefinition unsignedInteger(string $name) 相当于 Unsigned INTEGER
- * @method static ColumnDefinition unsignedBigInteger(string $name) 相当于 Unsigned BIGINT
- * @method static ColumnDefinition string(string $name, int $limit) 相当于带长度的 VARCHAR
- * @method static ColumnDefinition char(string $name, int $limit) 相当于带有长度的 CHAR
- * @method static ColumnDefinition text(string $name) 相当于 TEXT
+ * @method static ColumnDefinition tinyInteger(string $name) 相当于 tinyint
+ * @method static ColumnDefinition unsignedTinyInteger(string $name) 相当于 unsigned tinyint
+ * @method static ColumnDefinition smallInteger(string $name) 相当于 smallint
+ * @method static ColumnDefinition unsignedSmallInteger(string $name) 相当于 unsigned smallint
+ * @method static ColumnDefinition mediumInteger(string $name) 相当于 mediumint
+ * @method static ColumnDefinition unsignedMediumInteger(string $name) 相当于 unsigned mediumint
+ * @method static ColumnDefinition integer(string $name) 相当于 integer
+ * @method static ColumnDefinition unsignedInteger(string $name) 相当于 unsigned integer
+ * @method static ColumnDefinition bigInteger(string $name) 相当于 bigint
+ * @method static ColumnDefinition unsignedBigInteger(string $name) 相当于 unsigned bigint
+ * @method static ColumnDefinition string(string $name, int $limit) 相当于带长度的 varchar
+ * @method static ColumnDefinition char(string $name, int $limit) 相当于带有长度的 char
+ * @method static ColumnDefinition text(string $name) 相当于 text
  * @method static ColumnDefinition bit(string $name, int $limit)
  * @method static ColumnDefinition binary(string $name, int $limit)
  * @method static ColumnDefinition varbinary(string $name, int $limit)
- * @method static ColumnDefinition blob(string $name) 相当于 BLOB
- * @method static ColumnDefinition json(string $name) 相当于 JSON
+ * @method static ColumnDefinition blob(string $name) 相当于 blob
+ * @method static ColumnDefinition json(string $name) 相当于 json
  * @method static ColumnDefinition float(string $name, int $precision = null, int $scale = null)
  * @method static ColumnDefinition double(string $name, int $precision = null, int $scale = null)
  * @method static ColumnDefinition decimal(string $name, int $precision = null, int $scale = null)
@@ -72,13 +74,15 @@ class ColumnDefinition
     const MAPPING = [
         'bigInteger'   => [Adapter::PHINX_TYPE_BIG_INTEGER, null], // INT_REGULAR
         'integer'      => [Adapter::PHINX_TYPE_INTEGER, null], // INT_REGULAR
+        'mediumInteger' => [Adapter::PHINX_TYPE_INTEGER, 16777215], // INT_MEDIUM
         'smallInteger' => [Adapter::PHINX_TYPE_SMALL_INTEGER, null], // INT_SMALL
-        'tinyInteger'  => [Adapter::PHINX_TYPE_INTEGER, 255], // INT_TINY
+        'tinyInteger'  => [Adapter::PHINX_TYPE_TINY_INTEGER, NULL], // INT_TINY
 
-        'unsignedBigInteger'   => [Adapter::PHINX_TYPE_BIG_INTEGER, null], // INT_REGULAR
-        'unsignedInteger'      => [Adapter::PHINX_TYPE_INTEGER, null], // INT_REGULAR
-        'unsignedSmallInteger' => [Adapter::PHINX_TYPE_SMALL_INTEGER, null], // INT_SMALL
-        'unsignedTinyInteger'  => [Adapter::PHINX_TYPE_INTEGER, 255], // INT_TINY
+        'unsignedBigInteger'    => [Adapter::PHINX_TYPE_BIG_INTEGER, null], // INT_REGULAR
+        'unsignedInteger'       => [Adapter::PHINX_TYPE_INTEGER, null], // INT_REGULAR
+        'unsignedMediumInteger' => [Adapter::PHINX_TYPE_INTEGER, 16777215], // INT_MEDIUM
+        'unsignedSmallInteger'  => [Adapter::PHINX_TYPE_SMALL_INTEGER, null], // INT_SMALL
+        'unsignedTinyInteger'   => [Adapter::PHINX_TYPE_TINY_INTEGER, null], // INT_TINY
 
         'string' => [Adapter::PHINX_TYPE_STRING, 255], // TEXT_TINY
         'char'   => [Adapter::PHINX_TYPE_CHAR, null],
@@ -158,12 +162,14 @@ class ColumnDefinition
         switch ($callName) {
             case 'bigInteger':
             case 'integer':
+            case 'mediumInteger':
             case 'smallInteger':
             case 'tinyInteger':
                 $column->setDefault(0);
                 break;
             case 'unsignedBigInteger':
             case 'unsignedInteger':
+            case 'unsignedMediumInteger':
             case 'unsignedSmallInteger':
             case 'unsignedTinyInteger':
             case 'status':

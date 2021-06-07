@@ -68,6 +68,8 @@ class Init extends AbstractMigration
                 $blueprint->string('label', 48)->asciiCharacter()->comment('标签');
                 $blueprint->integer('int');
                 $blueprint->unsignedInteger('uint');
+                $blueprint->mediumInteger('mint');
+                $blueprint->unsignedMediumInteger('umint');
                 $blueprint->smallInteger('sint');
                 $blueprint->unsignedSmallInteger('usint');
                 $blueprint->tinyInteger('tint');
