@@ -278,19 +278,26 @@ class ColumnDefinition
 
     /**
      * 指定列的排序规则 (MySQL)
-     * @param string $encoding  eg: utf8mb4_general_ci
+     * @param string $encoding  eg: utf8mb4
+     * @param string $collation  eg: utf8mb4_general_ci
      * @return $this
      */
-    public function collation(string $encoding): ColumnDefinition
+    public function collation(string $encoding, string $collation): ColumnDefinition
     {
-        $this->column->setCollation($encoding);
+        $this->column->setEncoding($encoding);
+        $this->column->setCollation($collation);
         return $this;
     }
 
     public function ccAscii(): ColumnDefinition
     {
-        $this->column->setCollation('ascii');
-        $this->column->setCollation('ascii_general_ci');
+        $this->asciiCharacter();
+        return $this;
+    }
+
+    public function asciiCharacter(string $collation = 'ascii_general_ci'): ColumnDefinition
+    {
+        $this->collation('ascii', $collation);
         return $this;
     }
 

@@ -65,7 +65,7 @@ class Init extends AbstractMigration
                 $blueprint->primaryKey = 'label';
                 $blueprint->comment = '标签';
 
-                $blueprint->string('label', 48)->ccAscii()->comment('标签');
+                $blueprint->string('label', 48)->asciiCharacter()->comment('标签');
                 $blueprint->integer('int');
                 $blueprint->unsignedInteger('uint');
                 $blueprint->smallInteger('sint');
