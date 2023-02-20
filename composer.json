@@ -15,8 +15,8 @@
     },
     "require-dev": {
         "phpunit/phpunit": "^8|^9",
-        "robmorgan/phinx": "~0.12.0",
-        "symfony/var-dumper": "^5.0|^4.0"
+        "robmorgan/phinx": "~0.12.5|~0.13.1",
+        "symfony/var-dumper": "^5.0|^6.0"
     },
     "suggest": {
         "robmorgan/phinx": "must require or phar"
