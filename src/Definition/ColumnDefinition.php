@@ -49,8 +49,12 @@ use function Zxin\Phinx\Schema\to_snake_case;
  * @method static ColumnDefinition createTime() createTime
  * @method static ColumnDefinition updateTime() updateTime
  * @method static ColumnDefinition deleteTime() deleteTime
- * @method static ColumnDefinition createBy() createBy
- * @method static ColumnDefinition updateBy() updateBy
+ * @method static ColumnDefinition createdAt(?string $type = null, ?$limit = null) createdAt
+ * @method static ColumnDefinition updatedAt(?string $type = null, ?$limit = null) updatedAt
+ * @method static ColumnDefinition deletedAt(?string $type = null, ?$limit = null) deletedAt
+ * @method static ColumnDefinition createdBy(?string $type = null, ?$limit = null) createdBy
+ * @method static ColumnDefinition updatedBy(?string $type = null, ?$limit = null) updatedBy
+ * @method static ColumnDefinition deletedBy(?string $type = null, ?$limit = null) deletedBy
  * @method static ColumnDefinition uuid() uuid
  * @method static ColumnDefinition status() status
  * @method static ColumnDefinition genre() genre
@@ -103,14 +107,23 @@ class ColumnDefinition
         'createTime'  => [Adapter::PHINX_TYPE_INTEGER, 4294967295],
         'updateTime'  => [Adapter::PHINX_TYPE_INTEGER, 4294967295],
         'deleteTime'  => [Adapter::PHINX_TYPE_INTEGER, 4294967295],
+        // ===> 弃用开始
         'createBy'    => [Adapter::PHINX_TYPE_INTEGER, 4294967295],
         'updateBy'    => [Adapter::PHINX_TYPE_INTEGER, 4294967295],
         'creatorUid'  => [Adapter::PHINX_TYPE_INTEGER, 4294967295],
         'editorUid'   => [Adapter::PHINX_TYPE_INTEGER, 4294967295],
+        // <=== 弃用结束
         'status'      => [Adapter::PHINX_TYPE_INTEGER, 255],
         'genre'       => [Adapter::PHINX_TYPE_INTEGER, 255],
         'uuid'        => [Adapter::PHINX_TYPE_STRING, 36],
         'remark'      => [Adapter::PHINX_TYPE_STRING, 255],
+
+        'createdAt'  => [Adapter::PHINX_TYPE_INTEGER, 4294967295],
+        'updatedAt'  => [Adapter::PHINX_TYPE_INTEGER, 4294967295],
+        'deletedAt'  => [Adapter::PHINX_TYPE_INTEGER, 4294967295],
+        'createdBy'  => [Adapter::PHINX_TYPE_INTEGER, 4294967295],
+        'updatedBy'  => [Adapter::PHINX_TYPE_INTEGER, 4294967295],
+        'deletedBy'  => [Adapter::PHINX_TYPE_INTEGER, 4294967295],
     ];
 
     protected $change = false;
@@ -202,10 +215,30 @@ class ColumnDefinition
             case 'createTime':
             case 'updateTime':
             case 'deleteTime':
+                // ===> 弃用开始
             case 'creatorUid':
             case 'editorUid':
             case 'createBy':
             case 'updateBy':
+                // <=== 弃用结束
+                $column->setSigned(false);
+                $column->setDefault(0);
+                $column->setComment(self::COMMENTS[$callName] ?? null);
+                break;
+            case 'createdAt':
+            case 'updatedAt':
+            case 'deletedAt':
+            case 'createdBy':
+            case 'updatedBy':
+            case 'deletedBy':
+                $overlayType = $arguments[0] ?? null;
+                if ($overlayType && is_string($overlayType)) {
+                    $column->setType($overlayType);
+                }
+                $overlayLimit = $arguments[1] ?? null;
+                if (null !== $overlayLimit) {
+                    $column->setLimit($overlayLimit);
+                }
                 $column->setSigned(false);
                 $column->setDefault(0);
                 $column->setComment(self::COMMENTS[$callName] ?? null);
