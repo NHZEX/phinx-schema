@@ -61,6 +61,10 @@ use Zxin\Phinx\Schema\Definition\TableDefinition;
 class Blueprint
 {
     /**
+     * @var int
+     */
+    protected $compatibleVersion;
+    /**
      * @var Schema
      */
     protected $schema;
@@ -84,11 +88,12 @@ class Blueprint
      */
     public $table;
 
-    public function __construct(Schema $schema)
+    public function __construct(Schema $schema, int $compatibleVersion = COMPATIBLE_VERSION_DEFAULT)
     {
-        $this->schema          = $schema;
-        $this->table           = $schema->getTable();
-        $this->tableDefinition = new TableDefinition();
+        $this->compatibleVersion = $compatibleVersion;
+        $this->schema            = $schema;
+        $this->table             = $schema->getTable();
+        $this->tableDefinition   = new TableDefinition();
     }
 
     /**
@@ -126,7 +131,7 @@ class Blueprint
      */
     public function __call(string $callName, array $arguments): ColumnDefinition
     {
-        $column          = ColumnDefinition::make($callName, $arguments);
+        $column          = ColumnDefinition::make($callName, $arguments, $this->compatibleVersion);
         if (isset($this->columns[$column->getName()])) {
             throw new RuntimeException('duplicate definition column ' . $column->getName());
         }

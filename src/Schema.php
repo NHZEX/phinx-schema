@@ -22,13 +22,9 @@ class Schema
      * @var AbstractMigration
      */
     protected static $migration;
+    protected static $compatibleVersion;
 
     protected $tableName;
-
-    /**
-     * @var TableDefinition
-     */
-    protected $tableOptions;
 
     /**
      * @var Blueprint
@@ -44,8 +40,7 @@ class Schema
     {
         $this->tableName    = $tableName;
         $this->table        = ($migration ?? self::$migration)->table($this->tableName);
-        $this->tableOptions = new TableDefinition();
-        $this->blueprint    = new Blueprint($this);
+        $this->blueprint    = new Blueprint($this, self::$compatibleVersion);
     }
 
     public function getTable(): Table
@@ -53,12 +48,15 @@ class Schema
         return $this->table;
     }
 
-    public static function cxt(AbstractMigration $migration, Closure $closure): void
+    public static function cxt(AbstractMigration $migration, Closure $closure, int $compatibleVersion = COMPATIBLE_VERSION_DEFAULT): void
     {
-        $prev            = self::$migration;
+        $prevAM          = self::$migration;
+        $prevCV          = self::$compatibleVersion;
         self::$migration = $migration;
+        self::$compatibleVersion = $compatibleVersion;
         $closure();
-        self::$migration = $prev;
+        self::$migration = $prevAM;
+        self::$compatibleVersion = $prevCV;
     }
 
     /**
@@ -109,5 +107,10 @@ class Schema
         }
 
         $schema->table->{$name}();
+    }
+
+    public static function getCompatibleVersion(): int
+    {
+        return self::$compatibleVersion;
     }
 }

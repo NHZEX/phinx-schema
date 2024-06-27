@@ -17,6 +17,8 @@ use function array_pad;
 use function is_array;
 use function method_exists;
 use function Zxin\Phinx\Schema\to_snake_case;
+use const Zxin\Phinx\Schema\COMPATIBLE_VERSION_DEFAULT;
+use const Zxin\Phinx\Schema\COMPATIBLE_VERSION_OLD;
 
 /**
  * 字段构造增强
@@ -140,10 +142,11 @@ class ColumnDefinition
 
     public static function __callStatic($name, $arguments): ColumnDefinition
     {
-        return self::make($name, $arguments);
+        // 静态调用依赖上下文传输兼容级别
+        return self::make($name, $arguments, Schema::getCompatibleVersion());
     }
 
-    public static function make($callName, $arguments): ColumnDefinition
+    public static function make($callName, $arguments, int $compatibleVersion = COMPATIBLE_VERSION_DEFAULT): ColumnDefinition
     {
         if ($callName === 'column') {
             $type = $arguments[0];
@@ -178,7 +181,9 @@ class ColumnDefinition
             case 'mediumInteger':
             case 'smallInteger':
             case 'tinyInteger':
-                $column->setDefault(0);
+                if ($compatibleVersion === COMPATIBLE_VERSION_OLD) {
+                    $column->setDefault(0);
+                }
                 break;
             case 'unsignedBigInteger':
             case 'unsignedInteger':
@@ -188,11 +193,15 @@ class ColumnDefinition
             case 'status':
             case 'genre':
                 $column->setSigned(false);
-                $column->setDefault(0);
+                if ($compatibleVersion === COMPATIBLE_VERSION_OLD) {
+                    $column->setDefault(0);
+                }
                 break;
             case 'string':
                 $column->setLimit($arg1);
-                $column->setDefault('');
+                if ($compatibleVersion === COMPATIBLE_VERSION_OLD) {
+                    $column->setDefault('');
+                }
                 break;
             case 'char':
             case 'bit':
@@ -209,7 +218,9 @@ class ColumnDefinition
                 if (isset($arguments[2]) && is_numeric($arguments[2])) {
                     $column->setScale($arguments[2]);
                 }
-                $column->setDefault(0);
+                if ($compatibleVersion === COMPATIBLE_VERSION_OLD) {
+                    $column->setDefault(0);
+                }
                 break;
             case 'lockVersion':
             case 'createTime':
@@ -240,7 +251,13 @@ class ColumnDefinition
                     $column->setLimit($overlayLimit);
                 }
                 $column->setSigned(false);
-                $column->setDefault(0);
+                if ($compatibleVersion === COMPATIBLE_VERSION_OLD) {
+                    $column->setDefault(0);
+                } else {
+                    if (!('createdAt' === $callName || 'createdBy' === $callName)) {
+                        $column->setDefault(0);
+                    }
+                }
                 $column->setComment(self::COMMENTS[$callName] ?? null);
                 break;
             case 'uuid':
