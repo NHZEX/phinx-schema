@@ -106,6 +106,11 @@ class Schema
             $schema->table->addIndex($index->getField(), $index->getOptions());
         }
 
+        if ('create' === $name && self::getMigration()->isMigratingUp() && $schema->table->exists()) {
+            // 触发警告
+            trigger_error("table is exists: {$schema->table->getName()}, cannot be created", E_USER_WARNING);
+            return;
+        }
         $schema->table->{$name}();
     }
 
