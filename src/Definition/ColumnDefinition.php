@@ -391,12 +391,11 @@ class ColumnDefinition
 
     /**
      * 设置 INTEGER 类型的字段为 UNSIGNED (MySQL)
-     * @param bool $enable
      * @return $this
      */
-    public function unsigned(bool $enable = true): ColumnDefinition
+    public function unsigned(bool $unsigned): ColumnDefinition
     {
-        $this->column->setSigned(!$enable);
+        $this->column->setSigned(!$unsigned);
         return $this;
     }
 
