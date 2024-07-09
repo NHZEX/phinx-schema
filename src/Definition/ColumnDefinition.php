@@ -381,12 +381,11 @@ class ColumnDefinition
 
     /**
      * 此字段允许写入 NULL 值
-     * @param bool $enable
      * @return $this
      */
-    public function nullable(bool $enable = false): ColumnDefinition
+    public function nullable(bool $nullable): ColumnDefinition
     {
-        $this->column->setNull($enable);
+        $this->column->setNull($nullable);
         return $this;
     }
 
