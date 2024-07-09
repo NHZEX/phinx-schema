@@ -7,7 +7,7 @@ use function strtolower;
 
 const COMPATIBLE_VERSION_OLD     = 0;
 const COMPATIBLE_VERSION_NEXT    = 1;
-const COMPATIBLE_VERSION_DEFAULT = COMPATIBLE_VERSION_OLD;
+const COMPATIBLE_VERSION_DEFAULT = COMPATIBLE_VERSION_NEXT;
 
 /**
  * @param string $input
