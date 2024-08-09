@@ -77,7 +77,7 @@ class ColumnDefinition
         'remark'     => '备注',
     ];
 
-    const MAPPING = [
+    const COLUMN_PRESET = [
         'bigInteger'   => [Adapter::PHINX_TYPE_BIG_INTEGER, null], // INT_REGULAR
         'integer'      => [Adapter::PHINX_TYPE_INTEGER, null], // INT_REGULAR
         'mediumInteger' => [Adapter::PHINX_TYPE_INTEGER, 16777215], // INT_MEDIUM
@@ -105,7 +105,7 @@ class ColumnDefinition
         'double'  => [Adapter::PHINX_TYPE_DOUBLE, null],
         'decimal' => [Adapter::PHINX_TYPE_DECIMAL, null],
 
-        'lockVersion' => [Adapter::PHINX_TYPE_INTEGER, 4294967295],
+        'lockVersion' => [Adapter::PHINX_TYPE_INTEGER, null],
         'createTime'  => [Adapter::PHINX_TYPE_INTEGER, 4294967295],
         'updateTime'  => [Adapter::PHINX_TYPE_INTEGER, 4294967295],
         'deleteTime'  => [Adapter::PHINX_TYPE_INTEGER, 4294967295],
@@ -120,12 +120,12 @@ class ColumnDefinition
         'uuid'        => [Adapter::PHINX_TYPE_STRING, 36],
         'remark'      => [Adapter::PHINX_TYPE_STRING, 255],
 
-        'createdAt'  => [Adapter::PHINX_TYPE_INTEGER, 4294967295],
-        'updatedAt'  => [Adapter::PHINX_TYPE_INTEGER, 4294967295],
-        'deletedAt'  => [Adapter::PHINX_TYPE_INTEGER, 4294967295],
-        'createdBy'  => [Adapter::PHINX_TYPE_INTEGER, 4294967295],
-        'updatedBy'  => [Adapter::PHINX_TYPE_INTEGER, 4294967295],
-        'deletedBy'  => [Adapter::PHINX_TYPE_INTEGER, 4294967295],
+        'createdAt'  => [Adapter::PHINX_TYPE_INTEGER, null],
+        'updatedAt'  => [Adapter::PHINX_TYPE_INTEGER, null],
+        'deletedAt'  => [Adapter::PHINX_TYPE_INTEGER, null],
+        'createdBy'  => [Adapter::PHINX_TYPE_INTEGER, null],
+        'updatedBy'  => [Adapter::PHINX_TYPE_INTEGER, null],
+        'deletedBy'  => [Adapter::PHINX_TYPE_INTEGER, null],
     ];
 
     protected $change = false;
@@ -160,7 +160,7 @@ class ColumnDefinition
              * $name <> null : type
              */
             $name = $name ?? to_snake_case($callName);
-            [$type, $limit] = self::MAPPING[$callName];
+            [$type, $limit] = self::COLUMN_PRESET[$callName];
         }
 
 
