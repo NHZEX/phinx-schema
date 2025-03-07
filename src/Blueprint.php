@@ -149,7 +149,7 @@ class Blueprint
     public function index($field, ?string $name = null): IndexDefinition
     {
         $index = new IndexDefinition($field);
-        $name = $name ?? IndexDefinition::generateName($field);
+        $name ??= IndexDefinition::generateName($field);
         $index->name($name);
         if (isset($this->indexs[$name])) {
             throw new RuntimeException('duplicate definition index ' . $name);

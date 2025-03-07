@@ -153,7 +153,7 @@ class ColumnDefinition
              * $name == null : field
              * $name <> null : type
              */
-            $name = $name ?? to_snake_case($callName);
+            $name ??= to_snake_case($callName);
             [$type, $limit] = self::COLUMN_PRESET[$callName];
         }
 
@@ -445,9 +445,7 @@ class ColumnDefinition
             $adapter = $adapter->getAdapter();
         }
         // 获取可无符号列
-        $getSignedColumnTypes = function () {
-            return $this->signedColumnTypes ?? null;
-        };
+        $getSignedColumnTypes = (fn() => $this->signedColumnTypes ?? null);
         $signedColumnTypes = $getSignedColumnTypes->call($adapter);
         // 获取列类型
         $type = $adapter->getSqlType($originalType, $this->column->getLimit());
