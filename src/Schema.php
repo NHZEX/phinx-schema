@@ -12,9 +12,9 @@ use RuntimeException;
 /**
  * Class Schema
  * @package Zxin\Phinx\Schema
- * @method static void create(string $tableName, Closure $closure, AbstractMigration $migration = null)
- * @method static void update(string $tableName, Closure $closure, AbstractMigration $migration = null)
- * @method static void save(string $tableName, Closure $closure, AbstractMigration $migration = null)
+ * @method static void create(string $tableName, Closure $closure, ?AbstractMigration $migration = null)
+ * @method static void update(string $tableName, Closure $closure, ?AbstractMigration $migration = null)
+ * @method static void save(string $tableName, Closure $closure, ?AbstractMigration $migration = null)
  */
 class Schema
 {
@@ -36,7 +36,7 @@ class Schema
      */
     protected $table;
 
-    protected function __construct(string $tableName, AbstractMigration $migration = null)
+    protected function __construct(string $tableName, ?AbstractMigration $migration = null)
     {
         $this->tableName    = $tableName;
         $this->table        = ($migration ?? self::$migration)->table($this->tableName);

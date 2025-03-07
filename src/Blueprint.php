@@ -39,9 +39,9 @@ use Zxin\Phinx\Schema\Definition\TableDefinition;
  * @method ColumnDefinition varbinary(string $name, int $limit)
  * @method ColumnDefinition blob(string $name) 相当于 blob
  * @method ColumnDefinition json(string $name) 相当于 json
- * @method ColumnDefinition float(string $name, int $precision = null, int $scale = null)
- * @method ColumnDefinition double(string $name, int $precision = null, int $scale = null)
- * @method ColumnDefinition decimal(string $name, int $precision = null, int $scale = null)
+ * @method ColumnDefinition float(string $name, ?int $precision = null, ?int $scale = null)
+ * @method ColumnDefinition double(string $name, ?int $precision = null, ?int $scale = null)
+ * @method ColumnDefinition decimal(string $name, ?int $precision = null, ?int $scale = null)
  *
  * @method ColumnDefinition lockVersion() lockVersion
  * @method ColumnDefinition createTime() createTime
@@ -145,7 +145,7 @@ class Blueprint
      * @param string|null     $name
      * @return IndexDefinition
      */
-    public function index($field, string $name = null): IndexDefinition
+    public function index($field, ?string $name = null): IndexDefinition
     {
         $index = new IndexDefinition($field);
         $name = $name ?? IndexDefinition::generateName($field);

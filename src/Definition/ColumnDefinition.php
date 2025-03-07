@@ -43,9 +43,9 @@ use const Zxin\Phinx\Schema\COMPATIBLE_VERSION_OLD;
  * @method static ColumnDefinition varbinary(string $name, int $limit)
  * @method static ColumnDefinition blob(string $name) 相当于 blob
  * @method static ColumnDefinition json(string $name) 相当于 json
- * @method static ColumnDefinition float(string $name, int $precision = null, int $scale = null)
- * @method static ColumnDefinition double(string $name, int $precision = null, int $scale = null)
- * @method static ColumnDefinition decimal(string $name, int $precision = null, int $scale = null)
+ * @method static ColumnDefinition float(string $name, ?int $precision = null, ?int $scale = null)
+ * @method static ColumnDefinition double(string $name, ?int $precision = null, ?int $scale = null)
+ * @method static ColumnDefinition decimal(string $name, ?int $precision = null, ?int $scale = null)
  *
  * @method static ColumnDefinition lockVersion() lockVersion
  * @method static ColumnDefinition createTime() createTime
