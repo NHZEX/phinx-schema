@@ -8,7 +8,7 @@ use Zxin\Phinx\Schema\Schema;
 
 class RemoveColumn extends AbstractMigration
 {
-    public function up()
+    public function up(): void
     {
         Schema::cxt($this, function (): void {
             Schema::save('system', function (Blueprint $blueprint): void {
@@ -18,7 +18,7 @@ class RemoveColumn extends AbstractMigration
         });
     }
 
-    public function down()
+    public function down(): void
     {
         Schema::cxt($this, function (): void {
             Schema::update('system', function (Blueprint $blueprint): void {

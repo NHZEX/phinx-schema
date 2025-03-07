@@ -432,7 +432,7 @@ class ColumnDefinition
         return $this->column;
     }
 
-    private function buildGenerated()
+    private function buildGenerated(): void
     {
         if (!$this->isGenerated()) {
             return;
@@ -445,7 +445,7 @@ class ColumnDefinition
             $adapter = $adapter->getAdapter();
         }
         // 获取可无符号列
-        $getSignedColumnTypes = (fn() => $this->signedColumnTypes ?? null);
+        $getSignedColumnTypes = (fn () => $this->signedColumnTypes ?? null);
         $signedColumnTypes = $getSignedColumnTypes->call($adapter);
         // 获取列类型
         $type = $adapter->getSqlType($originalType, $this->column->getLimit());

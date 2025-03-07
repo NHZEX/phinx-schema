@@ -11,7 +11,7 @@ class UpAuth extends AbstractMigration
     /**
      * Migrate Up.
      */
-    public function up()
+    public function up(): void
     {
         Schema::cxt($this, function (): void {
             Schema::create('permission', function (Blueprint $blueprint): void {
@@ -39,7 +39,7 @@ class UpAuth extends AbstractMigration
     /**
      * Migrate Down.
      */
-    public function down()
+    public function down(): void
     {
         Schema::cxt($this, function (): void {
             Schema::save('permission', function (Blueprint $blueprint): void {

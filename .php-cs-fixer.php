@@ -14,8 +14,8 @@ return $config
     ->setRules([
         '@PER-CS1.0'                 => true,
         '@PER-CS1.0:risky'           => true,
-        // '@PHP74Migration'            => true,
-        // '@PHP74Migration:risky'      => true,
+        '@PHP74Migration'            => true,
+        '@PHP74Migration:risky'      => true,
         // '@Symfony'                   => true,
         // '@Symfony:risky'             => true,
         // global_namespace_import.import_functions 之后找机会重新改为 null

@@ -67,7 +67,7 @@ class Schema
         return self::$migration;
     }
 
-    public static function __callStatic($name, $arguments)
+    public static function __callStatic($name, $arguments): void
     {
         $method = ['create', 'update', 'save'];
         if (!\in_array($name, $method)) {

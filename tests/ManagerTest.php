@@ -54,7 +54,7 @@ class ManagerTest extends TestCase
         return $this->manager->getEnvironment($env ?? 'production')->getAdapter();
     }
 
-    public function testMigrateSchema()
+    public function testMigrateSchema(): void
     {
         $adapter = $this->getAdapter();
         $adapter->dropDatabase($adapter->getOption('name'));
@@ -112,7 +112,7 @@ class ManagerTest extends TestCase
     /**
      * @param int $successCode
      */
-    public function callCommand(string $name, array $parameters = [], $successCode = AbstractCommand::CODE_SUCCESS)
+    public function callCommand(string $name, array $parameters = [], $successCode = AbstractCommand::CODE_SUCCESS): void
     {
         $parameters['-c'] = $this->configFile;
         $this->call($name, $parameters, $exitCode);

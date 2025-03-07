@@ -120,7 +120,7 @@ class Blueprint
      * @param $name
      * @param $value
      */
-    public function __set($name, $value)
+    public function __set($name, $value): void
     {
         $this->tableDefinition->{$name}($value);
     }
