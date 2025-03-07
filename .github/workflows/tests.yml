@@ -69,11 +69,11 @@ jobs:
 
       - name: Install dependencies (composer.lock)
         if: false == matrix.prefer-lowest
-        run: composer install --prefer-dist --no-progress --no-suggest
+        run: composer install --prefer-dist --no-progress --no-suggest --no-dev
 
       - name: Install dependencies (prefer-lowest)
         if: true == matrix.prefer-lowest
-        run: composer update --prefer-dist --no-progress --no-suggest --prefer-lowest
+        run: composer update --prefer-dist --no-progress --no-suggest --prefer-lowest --no-dev
 
       - name: Run test suite
         run: composer exec -- phpunit -v
