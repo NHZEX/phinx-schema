@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: NHZEXG
@@ -21,7 +22,7 @@ class IndexDefinition
      */
     public static function generateName($field)
     {
-        if (is_array($field)) {
+        if (\is_array($field)) {
             $name = implode('_', $field);
         } else {
             $name = $field;

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Zxin\Tests;
@@ -14,31 +15,30 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\ConsoleOutput;
 use Symfony\Component\Console\Output\NullOutput;
 use Symfony\Component\Console\Output\OutputInterface;
-use function count;
 
 class ManagerTest extends TestCase
 {
     /**
-     * @var Config $config
+     * @var Config
      */
     protected $config;
 
     /**
-     * @var InputInterface $input
+     * @var InputInterface
      */
     protected $input;
 
     /**
-     * @var OutputInterface $output
+     * @var OutputInterface
      */
     protected $output;
 
     /**
-     * @var Manager $manager
+     * @var Manager
      */
     protected $manager;
 
-    protected $configFile = __DIR__ . '/_file/config.php';
+    protected $configFile = __DIR__.'/_file/config.php';
 
     protected function setUp(): void
     {
@@ -48,15 +48,12 @@ class ManagerTest extends TestCase
 
     /**
      * @param null $env
-     * @return AdapterInterface
      */
     public function getAdapter($env = null): AdapterInterface
     {
         return $this->manager->getEnvironment($env ?? 'production')->getAdapter();
     }
 
-    /**
-     */
     public function testMigrateSchema()
     {
         $adapter = $this->getAdapter();
@@ -69,7 +66,7 @@ class ManagerTest extends TestCase
         $this->assertTrue($adapter->hasTable('system'));
         $this->assertTrue($adapter->hasPrimaryKey('system', ['label']));
         $this->assertTrue($adapter->hasPrimaryKey('system', ['label']));
-        $this->assertEquals(28, count($adapter->getColumns('system')));
+        $this->assertEquals(28, \count($adapter->getColumns('system')));
         $this->assertTrue($adapter->hasIndexByName('permission', 'hash'));
 
         $this->assertTrue($adapter->hasColumn('permission', 'blob1'));
@@ -113,9 +110,7 @@ class ManagerTest extends TestCase
     }
 
     /**
-     * @param string $name
-     * @param array  $parameters
-     * @param int    $successCode
+     * @param int $successCode
      */
     public function callCommand(string $name, array $parameters = [], $successCode = AbstractCommand::CODE_SUCCESS)
     {
@@ -125,15 +120,15 @@ class ManagerTest extends TestCase
     }
 
     /**
-     * @param string $command
-     * @param array  $parameters
-     * @param int    $exitCode
+     * @param int $exitCode
+     *
      * @return OutputInterface
+     *
      * @noinspection PhpDocMissingThrowsInspection
      */
     public function call(string $command, array $parameters = [], &$exitCode = 0)
     {
-        $input  = new ArrayInput($parameters);
+        $input = new ArrayInput($parameters);
         $output = new ConsoleOutput();
 
         $app = new PhinxApplication();
@@ -142,6 +137,7 @@ class ManagerTest extends TestCase
         $exitCode = $app
             ->find($command)
             ->run($input, $output);
+
         return $output;
     }
 }

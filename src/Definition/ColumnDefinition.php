@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: NHZEXG
@@ -64,7 +65,7 @@ use const Zxin\Phinx\Schema\COMPATIBLE_VERSION_OLD;
  */
 class ColumnDefinition
 {
-    const COMMENTS = [
+    public const COMMENTS = [
         'createTime' => '创建时间',
         'updateTime' => '更新时间',
         'deleteTime' => '删除时间',
@@ -77,12 +78,12 @@ class ColumnDefinition
         'remark'     => '备注',
     ];
 
-    const COLUMN_PRESET = [
+    public const COLUMN_PRESET = [
         'bigInteger'   => [Adapter::PHINX_TYPE_BIG_INTEGER, null], // INT_REGULAR
         'integer'      => [Adapter::PHINX_TYPE_INTEGER, null], // INT_REGULAR
         'mediumInteger' => [Adapter::PHINX_TYPE_INTEGER, 16777215], // INT_MEDIUM
         'smallInteger' => [Adapter::PHINX_TYPE_SMALL_INTEGER, null], // INT_SMALL
-        'tinyInteger'  => [Adapter::PHINX_TYPE_TINY_INTEGER, NULL], // INT_TINY
+        'tinyInteger'  => [Adapter::PHINX_TYPE_TINY_INTEGER, null], // INT_TINY
 
         'unsignedBigInteger'    => [Adapter::PHINX_TYPE_BIG_INTEGER, null], // INT_REGULAR
         'unsignedInteger'       => [Adapter::PHINX_TYPE_INTEGER, null], // INT_REGULAR
@@ -243,7 +244,7 @@ class ColumnDefinition
             case 'updatedBy':
             case 'deletedBy':
                 $overlayType = $arguments[0] ?? null;
-                if ($overlayType && is_string($overlayType)) {
+                if ($overlayType && \is_string($overlayType)) {
                     $column->setType($overlayType);
                 }
                 $overlayLimit = $arguments[1] ?? null;
@@ -465,7 +466,7 @@ class ColumnDefinition
         // 构建表达式
         $stored = $stored ? ' STORED' : ' VIRTUAL';
         $isUnsigned = !$this->column->isSigned()
-            && is_array($signedColumnTypes)
+            && \is_array($signedColumnTypes)
             && isset($signedColumnTypes[$originalType]);
         $unsigned = $isUnsigned ? ' unsigned' : '';
         // 重置为有符号

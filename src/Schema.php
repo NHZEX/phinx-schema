@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Zxin\Phinx\Schema;
@@ -70,7 +71,7 @@ class Schema
     public static function __callStatic($name, $arguments)
     {
         $method = ['create', 'update', 'save'];
-        if (!in_array($name, $method)) {
+        if (!\in_array($name, $method)) {
             throw new RuntimeException('Call to undefined method ' . static::class . '::' . $name . '()');
         }
 

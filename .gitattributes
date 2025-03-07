@@ -2,3 +2,4 @@
 /.github export-ignore
 /.phpunit.xml export-ignore
 /codecov.yml export-ignore
+/.php-cs-fixer.php export-ignore

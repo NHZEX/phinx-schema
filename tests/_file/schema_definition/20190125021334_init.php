@@ -1,4 +1,5 @@
 <?php
+
 namespace Zxin\Tests\Migrations;
 
 use Phinx\Migration\AbstractMigration;
@@ -58,7 +59,6 @@ class Init extends AbstractMigration
                     ->unsigned(true)
                     ->comment('是否打折: 1.是 2.否');
             });
-
 
             Schema::create('system', function (Blueprint $blueprint) {
                 $blueprint->id = false;
