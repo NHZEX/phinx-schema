@@ -16,6 +16,7 @@
     "require-dev": {
         "php-cs-fixer/shim": "^3.70",
         "phpunit/phpunit": "^8|^9",
+        "rector/rector": "^2.0",
         "robmorgan/phinx": "~0.12.5|~0.13.1|~0.14",
         "symfony/var-dumper": "^5.0|^6.0|^7.0"
     },

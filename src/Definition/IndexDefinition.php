@@ -1,12 +1,5 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: NHZEXG
- * Date: 2019/2/23
- * Time: 10:07
- */
-
 namespace Zxin\Phinx\Schema\Definition;
 
 use ValueError;
@@ -131,7 +124,7 @@ class IndexDefinition
      */
     public function order(array $order): IndexDefinition
     {
-        foreach ($order as $field => $value) {
+        foreach ($order as $value) {
             $value = strtoupper($value);
             if ($value !== 'DESC' && $value !== 'ASC') {
                 throw new ValueError('order value can only be DESC or ASC');

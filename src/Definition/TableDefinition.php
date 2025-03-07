@@ -1,12 +1,5 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: NHZEXG
- * Date: 2019/2/23
- * Time: 9:28
- */
-
 namespace Zxin\Phinx\Schema\Definition;
 
 class TableDefinition

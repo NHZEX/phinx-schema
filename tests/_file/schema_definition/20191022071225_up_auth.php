@@ -13,8 +13,8 @@ class UpAuth extends AbstractMigration
      */
     public function up()
     {
-        Schema::cxt($this, function () {
-            Schema::create('permission', function (Blueprint $blueprint) {
+        Schema::cxt($this, function (): void {
+            Schema::create('permission', function (Blueprint $blueprint): void {
                 $blueprint->table->drop()->save();
 
                 $blueprint->comment = '权限';
@@ -30,7 +30,7 @@ class UpAuth extends AbstractMigration
                 $blueprint->index('name')->limit(64);
             });
 
-            Schema::save('system', function (Blueprint $blueprint) {
+            Schema::save('system', function (Blueprint $blueprint): void {
                 $blueprint->string('string', 512)->comment('修改列')->change();
             });
         });
@@ -41,8 +41,8 @@ class UpAuth extends AbstractMigration
      */
     public function down()
     {
-        Schema::cxt($this, function () {
-            Schema::save('permission', function (Blueprint $blueprint) {
+        Schema::cxt($this, function (): void {
+            Schema::save('permission', function (Blueprint $blueprint): void {
                 $blueprint->table->removeIndexByName('name');
                 $blueprint->table->save();
             });

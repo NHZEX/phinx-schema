@@ -10,8 +10,8 @@ class RemoveColumn extends AbstractMigration
 {
     public function up()
     {
-        Schema::cxt($this, function () {
-            Schema::save('system', function (Blueprint $blueprint) {
+        Schema::cxt($this, function (): void {
+            Schema::save('system', function (Blueprint $blueprint): void {
                 $blueprint->table->removeColumn('text');
                 $blueprint->table->removeColumn('json');
             });
@@ -20,8 +20,8 @@ class RemoveColumn extends AbstractMigration
 
     public function down()
     {
-        Schema::cxt($this, function () {
-            Schema::update('system', function (Blueprint $blueprint) {
+        Schema::cxt($this, function (): void {
+            Schema::update('system', function (Blueprint $blueprint): void {
                 $blueprint->json('json')->after('char');
                 $blueprint->text('text')->after('char');
             });

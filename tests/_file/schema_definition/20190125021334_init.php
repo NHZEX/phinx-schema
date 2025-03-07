@@ -35,8 +35,8 @@ class Init extends AbstractMigration
      */
     public function change()
     {
-        Schema::cxt($this, function () {
-            Schema::create('test_generated', function (Blueprint $blueprint) {
+        Schema::cxt($this, function (): void {
+            Schema::create('test_generated', function (Blueprint $blueprint): void {
                 $blueprint->comment = '订单菜品';
                 $blueprint->unsigned = true;
 
@@ -60,7 +60,7 @@ class Init extends AbstractMigration
                     ->comment('是否打折: 1.是 2.否');
             });
 
-            Schema::create('system', function (Blueprint $blueprint) {
+            Schema::create('system', function (Blueprint $blueprint): void {
                 $blueprint->id = false;
                 $blueprint->primaryKey = 'label';
                 $blueprint->comment = '标签';
@@ -95,7 +95,7 @@ class Init extends AbstractMigration
                 $blueprint->decimal('decimal', 8, 6);
             });
 
-            Schema::create('permission', function (Blueprint $blueprint) {
+            Schema::create('permission', function (Blueprint $blueprint): void {
                 $blueprint->comment = '权限';
                 $blueprint->unsigned = true;
 

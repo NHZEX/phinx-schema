@@ -1,12 +1,5 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: NHZEXG
- * Date: 2019/1/28
- * Time: 17:46
- */
-
 namespace Zxin\Phinx\Schema\Definition;
 
 use Phinx\Db\Adapter\AdapterInterface as Adapter;
